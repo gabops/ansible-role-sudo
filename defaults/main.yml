@@ -1,0 +1,14 @@
+---
+sudo_package: sudo
+
+sudo_users: []
+
+sudo_defaults: []
+
+sudo_sudoers_defaults_file: defaults
+
+sudo_sudoersd_path: /etc/sudoers.d
+
+sudo_command_alias: {}
+
+sudo_command_alias_file: cmd_alias

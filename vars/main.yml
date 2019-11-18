@@ -1,0 +1,4 @@
+---
+sudo_sudoers_user: root
+sudo_sudoers_group: root
+sudo_sudoers_file_mode: 0440

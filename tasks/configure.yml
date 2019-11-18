@@ -1,0 +1,30 @@
+---
+- name: Add defaults configuration
+  template:
+    src: defaults.j2
+    dest: "{{ sudo_sudoersd_path }}/{{ sudo_sudoers_defaults_file }}"
+    validate: /usr/sbin/visudo -cf %s
+    owner: "{{ sudo_sudoers_user }}"
+    group: "{{ sudo_sudoers_group }}"
+    mode: "{{ sudo_sudoers_file_mode }}"
+  loop: "{{ sudo_defaults }}"
+
+- name: Add command aliases configuration
+  template:
+    src: command_alias.j2
+    dest: "{{ sudo_sudoersd_path }}/{{ sudo_command_alias_file }}"
+    validate: /usr/sbin/visudo -cf %s
+    owner: "{{ sudo_sudoers_user }}"
+    group: "{{ sudo_sudoers_group }}"
+    mode: "{{ sudo_sudoers_file_mode }}"
+  loop: "{{ sudo_command_alias | dict2items }}"
+
+- name: Add sudoers configuration
+  template:
+    src: sudoers.j2
+    dest: "{{ sudo_sudoersd_path }}/{{ item.name | replace('%', '') }}"
+    validate: /usr/sbin/visudo -cf %s
+    owner: "{{ sudo_sudoers_user }}"
+    group: "{{ sudo_sudoers_group }}"
+    mode: "{{ sudo_sudoers_file_mode }}"
+  loop: "{{ sudo_users }}"

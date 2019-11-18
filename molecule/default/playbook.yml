@@ -1,0 +1,25 @@
+---
+- name: Converge
+  hosts: all
+  vars:
+    sudo_defaults:
+      - always_set_home
+      - secure_path="/sbin:/bin:/usr/sbin:/usr/bin"
+    sudo_users:
+      - name: "%devops"
+        nopasswd: true
+        defaults: "!requiretty"
+      - name: "%developers"
+        commands:
+          - /bin/ls
+        command_alias:
+          MYSQL_CONN: /usr/bin/mysql -h localhost -u developer -p
+          APACHE: /usr/sbin/apachectl
+      - name: "user1"
+        commands:
+          - /sbin/poweroff
+          - IPTABLES
+    sudo_command_alias:
+      IPTABLES: /usr/bin/iptables -S
+  roles:
+    - role: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') | basename }}"
