@@ -10,6 +10,7 @@ def test_devops_file(host):
     f = host.file('/etc/sudoers.d/devops')
 
     assert f.exists
+    assert f.contains('Defaults:%devops !requiretty')
     assert f.contains('%devops ALL=(ALL:ALL) NOPASSWD: ALL')
     assert f.user == 'root'
     assert f.group == 'root'

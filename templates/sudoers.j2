@@ -6,6 +6,10 @@ Cmnd_Alias {{ key }} = {{ value }}
 {% endfor %}
 {%endif %}
 
+{% if item.defaults is defined %}
+Defaults:{{ item.name }} {{ item.defaults }}
+{%endif %}
+
 {% if item.commands is not defined %}
 {{ item.name }} {{ item.hosts | default('ALL') }}={{ "(" ~ item.users | default('ALL') ~ ":" ~ item.groups | default('ALL') ~ ")" }} {{ "NOPASSWD:" if item.nopasswd | default(false) else "" }} ALL
 {% elif item.commands is string %}
