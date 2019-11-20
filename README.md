@@ -14,7 +14,7 @@ Role Variables
 | Variable | Default value | Description |
 | :--- | :--- | :--- |
 | sudo_package | sudo | sudo package to install. |
-| sudo_users | []] | List of usernames or %groupname. The configuration will be added in individual files using the value of `name` as filename. |
+| sudo_users | [] | List of usernames or %groupname. The configuration will be added in individual files using the value of `name` as filename. |
 | sudo_defaults | [] | List of common defaults. |
 | sudo_sudoers_defaults_file | ansible | The file where the common `sudo_defaults` will be written. |
 | sudo_sudoers_d_path | /etc/sudoers.d | The path where all sudoers configuration files will be written. |
