@@ -1,0 +1,20 @@
+---
+- name: Prepare
+  hosts: all
+  tasks:
+    - name: Create group
+      group:
+        name: "{{ item }}"
+      loop:
+        - devops
+        - developers
+
+    - name: Create user
+      user:
+        name: "{{ item.user }}"
+        group: "{{ item.groups | default(omit) }}"
+      loop:
+        - user: john.doe
+        - user: user1
+          groups: devops
+        - user: user2
