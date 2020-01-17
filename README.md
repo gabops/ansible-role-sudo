@@ -21,6 +21,21 @@ Role Variables
 | sudo_command_alias_file | cmd_alias | The file where the command aliases defined in `sudo_command_alias` will be added. |
 | sudo_command_alias | {} | A dict of command aliases that will be added to the file defined in `sudo_command_alias_file` |
 
+### Some considerations: 
+
+- Each configuration defined into `sudo_users` is written into individual files using the `name` as filename. Any character such as '.' or '%' will be replaced for ''. This way, a definition like:
+
+  ```yaml
+    sudo_users:
+      - name: "%devops"
+        nopasswd: true
+        defaults: "!requiretty"
+  ```
+  will result in the configuration added to this file like: `/etc/sudoers.d/devops`.
+
+- Note that `sudo_command_alias` will set alias in a separate file. This is useful for global aliases. However the alias declared in a dictionary inside `sudo_users` (command_alias) will be added
+to the file of each individual user. This allows you to keep things in order in large configurations.
+
 Dependencies
 ------------
 
