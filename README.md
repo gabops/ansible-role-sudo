@@ -1,4 +1,4 @@
-gabops.sudoers
+gabops.sudo
 ==============
 [![Build Status](https://travis-ci.org/gabops/ansible-role-sudo.svg?branch=master)](https://travis-ci.org/gabops/ansible-role-sudo)
 Installs and configures sudo
