@@ -22,7 +22,7 @@
 - name: Add sudoers configuration
   template:
     src: sudoers.j2
-    dest: "{{ sudo_sudoersd_path }}/{{ item.name | replace('%', '') }}"
+    dest: "{{ sudo_sudoersd_path }}/{{ item.name | regex_replace('(\\.|%)', '') }}"
     validate: /usr/sbin/visudo -cf %s
     owner: "{{ sudo_sudoers_user }}"
     group: "{{ sudo_sudoers_group }}"
