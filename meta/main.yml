@@ -12,7 +12,7 @@ galaxy_info:
         - 7
     - name: Amazon
       versions:
-        - any
+        - all
     - name: Amazon Linux 2
       versions:
         - any
