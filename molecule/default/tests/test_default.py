@@ -32,3 +32,12 @@ def test_command_alias_file(host):
     assert f.contains('IPTABLES = /usr/bin/iptables -S')
     assert f.user == 'root'
     assert f.group == 'root'
+
+
+def test_sudoers(host):
+    c = host.run('su john.doe && sudo su')
+    assert c.succeeded
+    c = host.run('su user1 && sudo su')
+    assert c.succeeded
+    # c = host.run('su user2 && sudo su')
+    # assert c.failed
