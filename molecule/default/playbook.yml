@@ -6,6 +6,9 @@
       - always_set_home
       - secure_path="/sbin:/bin:/usr/sbin:/usr/bin"
     sudo_users:
+      - name: john.doe
+        nopasswd: true
+        defaults: "!requiretty"
       - name: "%devops"
         nopasswd: true
         defaults: "!requiretty"
